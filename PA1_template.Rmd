@@ -39,7 +39,8 @@ sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
 
 ```{r}
 hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range",
-	 ylim = range(0, 40), main="Histogram of Number of Steps Per Day With No NA Data")
+	 ylim = range(0, 30), main="Histogram of Number of Steps Per Day With No NA Data",
+	 breaks = 10)
 
 #mean and median info for total steps
 medianSteps <- median(sumData$Total_Steps)
@@ -149,7 +150,8 @@ sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
 #What is mean total number of steps taken per day?
 #create histogram of the number of steps per day and the frequency 
 hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range", 
-	 ylim = range(0, 40), main="Histogram of Number of Steps Per Day using Mean Data for NA's")
+	 ylim = range(0, 30), main="Histogram of Number of Steps Per Day using Mean Data for NA's",
+	 breaks = 10)
 
 #mean and median info for total steps
 medianSteps2 <- median(sumData$Total_Steps)
