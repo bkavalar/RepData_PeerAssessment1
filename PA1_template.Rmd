@@ -41,17 +41,22 @@ sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
 hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range",
 	 ylim = range(0, 40), main="Histogram of Number of Steps Per Day With No NA Data")
 
-```
-
-###Also need to present the mean and median number of steps:
-```{r}
 #mean and median info for total steps
 medianSteps <- median(sumData$Total_Steps)
 meanSteps <- mean(sumData$Total_Steps)
 firstQuant <- quantile(sumData$Total_Steps, probs = c(.25))
 thirdQuant <- quantile(sumData$Total_Steps, probs = c(.75))
 
+abline(v=meanSteps, lwd = 3, lty = 5, col = 'red')
+abline(v=medianSteps, lwd = 2, lty = 2, col = 'blue')
+
+legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"), cex = .8, 
+	   legend = c(paste('Median: ', medianSteps), 
+	   		   paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
+
+
 ```
+
 ###**The mean number of steps is `r format(meanSteps, scientific=FALSE, digits = 5)`.**  
 ###**The median number of steps is `r format(medianSteps, scientific=FALSE)`.**
 
@@ -75,14 +80,21 @@ plot(meanData$Average_Steps ~ meanData$Interval, type="l",
 	 xlab = "Interval Number", ylab = "Average Number of Steps",
 	 main = "Time Series Plot Showing Average Steps in Each 5 Minute Interval")
 
+#find interval value at maximum peak of steps
+InterValMax <- meanData$Interval[meanData$Average_Steps==max(meanData$Average_Steps)]
+
+abline(v=InterValMax, lwd = 2, lty = 2, col = 'blue')
+
+legend('topleft', lty = 2, lwd = 2, col = c("blue"),
+               cex = .8, 
+               legend = c(paste('Max Interval: ', InterValMax)))
 ```
 
 ###Next we find the 5-minute interval, on average across all the days in the dataset,  
 ###contains the maximum number of steps.
 
 ```{r}
-#find interval value at maximum peak of steps
-InterValMax <- meanData$Interval[meanData$Average_Steps==max(meanData$Average_Steps)]
+
 
 ```
 
@@ -139,18 +151,22 @@ sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
 hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range", 
 	 ylim = range(0, 40), main="Histogram of Number of Steps Per Day using Mean Data for NA's")
 
-```
-
-###Calculate and report the mean and median total number of steps taken per day. 
-
-```{r}
 #mean and median info for total steps
 medianSteps2 <- median(sumData$Total_Steps)
 meanSteps2 <- mean(sumData$Total_Steps)
 firstQuant2 <- quantile(sumData$Total_Steps, probs = c(.25))
 thirdQuant2 <- quantile(sumData$Total_Steps, probs = c(.75))
 
+abline(v=meanSteps2, lwd = 3, lty = 5, col = 'red')
+abline(v=medianSteps2, lwd = 2, lty = 2, col = 'blue')
+
+legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"),
+               cex = .8, 
+               legend = c(paste('Median: ', medianSteps2),
+                          paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
+
 ```
+
 ###**The mean number of steps using imputed data is `r format(meanSteps2, scientific=FALSE, digits = 5)`.**  
 ###**The median number of steps using imputed data is `r format(medianSteps2, scientific=FALSE)`.**
 
