@@ -11,6 +11,7 @@ output: html_document
 ```{r}
 #set working directory
 setwd("C:/Backup/2017 IRAD/R Programming/JHU Data Science Course/Reproducible Research/Week 2/Project 1")
+knitr::opts_chunk$set(fig.path = './figures/')
 
 library(dplyr)
 library(lattice)
@@ -37,7 +38,7 @@ sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
 ###Create histogram of the number of steps per day and the frequency 
 
 ```{r}
-hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range", 
+hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range",
 	 ylim = range(0, 40), main="Histogram of Number of Steps Per Day With No NA Data")
 
 ```
@@ -63,6 +64,7 @@ thirdQuant <- quantile(sumData$Total_Steps, probs = c(.75))
 ###and the average number of steps taken, averaged across all days (y-axis)
 
 ```{r}
+
 #find mean number of steps per interval across all dates
 meanData <- aggregate(fitData$steps, by=list(fitData$interval), mean)
 names(meanData)[1] <- "Interval"
@@ -110,6 +112,7 @@ IncompRows <- nrow(fitData[!complete.cases(fitData), ])
 ###Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 ```{r}
+
 #in this section we read in the data set and don't clear out NA rows
 fitData <- read.csv("activity.csv")
 
@@ -166,6 +169,7 @@ Quantiles Using Raw Data | Quantitles Using Imputed Data
 ###Make a panel plot containing a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
 ```{r}
+
 #in this section we read in the data set and don't clear out NA rows
 fitData <- read.csv("activity.csv")
 
