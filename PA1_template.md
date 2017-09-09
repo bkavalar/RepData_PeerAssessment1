@@ -1,5 +1,5 @@
 ---
-title: "PA1_template.Rmd"
+title: "PA1_template.md"
 author: "B. Kavalar"
 date: "September 3, 2017"
 output: html_document
@@ -8,7 +8,7 @@ output: html_document
 ###This first chuck of code will answer the first question in the assignment:  
 ###What is mean total number of steps taken per day?
 
-```{r}
+
 #set working directory
 setwd("C:/Backup/2017 IRAD/R Programming/JHU Data Science Course/Reproducible Research/Week 2/Project 1")
 knitr::opts_chunk$set(fig.path = './figures/')
@@ -32,12 +32,11 @@ names(sumData)[2] <- "Total_Steps"
 
 #convert steps to numeric from integer
 sumData$Total_Steps <- as.numeric(as.integer(sumData$Total_Steps))
-```
+
 
 ###What is mean total number of steps taken per day?
 ###Create histogram of the number of steps per day and the frequency 
 
-```{r}
 hist(sumData$Total_Steps, col = "cyan", xlab = "Total Number of Steps Per Day Over the Range",
 	 ylim = range(0, 30), main="Histogram of Number of Steps Per Day With No NA Data",
 	 breaks = 10)
@@ -56,8 +55,6 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"), cex = .8,
 	   		   paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
 
 
-```
-
 ###**The mean number of steps is `r format(meanSteps, scientific=FALSE, digits = 5)`.**  
 ###**The median number of steps is `r format(medianSteps, scientific=FALSE)`.**
 
@@ -67,8 +64,6 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"), cex = .8,
 ###What is the average daily activity pattern?
 
 ###Make a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
-
-```{r}
 
 #find mean number of steps per interval across all dates
 meanData <- aggregate(fitData$steps, by=list(fitData$interval), mean)
@@ -88,15 +83,10 @@ abline(v=InterValMax, lwd = 2, lty = 2, col = 'blue')
 legend('topleft', lty = 2, lwd = 2, col = c("blue"),
                cex = .8, 
                legend = c(paste('Max Interval: ', InterValMax)))
-```
 
 ###Next we find the 5-minute interval, on average across all the days in the dataset,  
 ###contains the maximum number of steps.
 
-```{r}
-
-
-```
 
 ###**The interval number with maximum number of steps is `r format(InterValMax, scientific=FALSE)`.**
 
@@ -105,7 +95,6 @@ legend('topleft', lty = 2, lwd = 2, col = c("blue"),
 ###Next we discuss the question:  Imputing missing values.  
 ###Calculate and report the total number of missing values in the dataset (the total number of rows with  NAs).
 
-```{r}
 #read in data set
 fitData <- read.csv("activity.csv")
 
@@ -115,15 +104,12 @@ IncompData <- fitData[!complete.cases(fitData), ]
 #find number of incomplete cases - rows with NAs using "not" complete.cases
 IncompRows <- nrow(fitData[!complete.cases(fitData), ])
 
-```
 ###**The total number of rows with missing data is `r IncompRows`.**
 
 ***
 
 ###Next we devise a strategy for filling in all of the missing values in the dataset. The strategy chosen was to use the mean step value for the data set since many dates have NA only.
 ###Create a new dataset that is equal to the original dataset but with the missing data filled in.
-
-```{r}
 
 #in this section we read in the data set and don't clear out NA rows
 fitData <- read.csv("activity.csv")
@@ -166,8 +152,6 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"),
                legend = c(paste('Median: ', medianSteps2),
                           paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
 
-```
-
 ###**The mean number of steps using imputed data is `r format(meanSteps2, scientific=FALSE, digits = 5)`.**  
 ###**The median number of steps using imputed data is `r format(medianSteps2, scientific=FALSE)`.**
 
@@ -184,8 +168,6 @@ Quantiles Using Raw Data | Quantitles Using Imputed Data
 
 ###Are there differences in activity patterns between weekdays and weekends?
 ###Make a panel plot containing a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
-
-```{r}
 
 #in this section we read in the data set and don't clear out NA rows
 fitData <- read.csv("activity.csv")
@@ -205,7 +187,6 @@ print( xyplot((newMeanData$steps ~ newMeanData$interval|newMeanData$workDay),
 			  type='l', layout=c(1,2),
 			  xlab='Interval Number', ylab='Average Number of Steps',
 			  main="Comparison of Activity on Weekdays Versus Weekends"))
-```
 
 
 
