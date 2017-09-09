@@ -11,7 +11,7 @@ output: html_document
 ```{r}
 #set working directory
 setwd("C:/Backup/2017 IRAD/R Programming/JHU Data Science Course/Reproducible Research/Week 2/Project 1")
-knitr::opts_chunk$set(fig.path = './figures/')
+knitr::opts_chunk$set(fig.path = './figure/')
 
 library(dplyr)
 library(lattice)
@@ -55,6 +55,9 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"), cex = .8,
 	   legend = c(paste('Median: ', medianSteps), 
 	   		   paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
 
+dev.copy(png, file = "./figure/hist1.png") 
+dev.off()
+
 
 ```
 
@@ -66,8 +69,7 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"), cex = .8,
 ###The next chuck of code will answer the second question:  
 ###What is the average daily activity pattern?
 
-###Make a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis)  
-###and the average number of steps taken, averaged across all days (y-axis)
+###Make a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 ```{r}
 
@@ -89,6 +91,11 @@ abline(v=InterValMax, lwd = 2, lty = 2, col = 'blue')
 legend('topleft', lty = 2, lwd = 2, col = c("blue"),
                cex = .8, 
                legend = c(paste('Max Interval: ', InterValMax)))
+
+dev.copy(png, file = "./figure/plot1.png") 
+dev.off()
+
+
 ```
 
 ###Next we find the 5-minute interval, on average across all the days in the dataset,  
@@ -167,6 +174,9 @@ legend('topleft', lty = 5, lwd = 1, col = c("red", "blue"),
                legend = c(paste('Median: ', medianSteps2),
                           paste('Mean: ', format(meanSteps, scientific=FALSE, digits = 5))))
 
+dev.copy(png, file = "./figure/hist2.png") 
+dev.off()
+
 ```
 
 ###**The mean number of steps using imputed data is `r format(meanSteps2, scientific=FALSE, digits = 5)`.**  
@@ -206,6 +216,10 @@ print( xyplot((newMeanData$steps ~ newMeanData$interval|newMeanData$workDay),
 			  type='l', layout=c(1,2),
 			  xlab='Interval Number', ylab='Average Number of Steps',
 			  main="Comparison of Activity on Weekdays Versus Weekends"))
+
+dev.copy(png, file = "./figure/plot2.png") 
+dev.off()
+
 ```
 
 
