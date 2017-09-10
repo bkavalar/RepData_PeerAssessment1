@@ -1,6 +1,7 @@
-#set working directorysetwd("C:/Backup/2017 IRAD/R Programming/JHU Data Science Course/Reproducible Research/Week 2/Project 1")
-library(dplyr)
+#set working directory
+setwd("C:/Backup/2017 IRAD/R Programming/JHU Data Science Course/Reproducible Research/Week 2/Project 1")
 
+library(dplyr)
 library(lattice)
 #read in data setfitData <- read.csv("activity.csv")
 #remove rows with NA 
